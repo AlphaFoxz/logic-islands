@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://kpngbbw0px35"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_3hkw0"]
+
+[node name="StartScenes" type="Node2D"]
+script = ExtResource("1_3hkw0")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 425.0
+offset_top = 327.0
+offset_right = 679.0
+offset_bottom = 379.0
+text = "开始"
+
+[node name="ExitButton" type="Button" parent="."]
+offset_left = 425.0
+offset_top = 475.0
+offset_right = 679.0
+offset_bottom = 527.0
+text = "退出"
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 425.0
+offset_top = 402.0
+offset_right = 679.0
+offset_bottom = 454.0
+text = "设置"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_exit_button_pressed"]

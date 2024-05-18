@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1eqs555lkjmk"]
+
+[ext_resource type="Script" path="res://scenes/in_game/in_game_scenes.gd" id="1_hknk4"]
+[ext_resource type="Script" path="res://scenes/in_game/game_map.gd" id="2_mt8e4"]
+[ext_resource type="Script" path="res://scenes/in_game/simple_zoom_camera_2d.gd" id="3_lvfhx"]
+
+[node name="InGameScenes" type="Node2D"]
+script = ExtResource("1_hknk4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 31.0
+text = "返回"
+
+[node name="GameMap" type="GameMap" parent="."]
+width = 10
+height = 7
+script = ExtResource("2_mt8e4")
+
+[node name="SimpleZoomCamera2D" type="SimpleZoomCamera2D" parent="."]
+scale = Vector2(1.12029, -1561.86)
+script = ExtResource("3_lvfhx")
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

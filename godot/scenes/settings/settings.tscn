@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://00upum043pfd"]
+
+[ext_resource type="Script" path="res://scenes/settings/settings.gd" id="1_t2x70"]
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_t2x70")
+
+[node name="BackButton2" type="Button" parent="."]
+offset_right = 150.0
+offset_bottom = 36.0
+text = "返回"
+
+[connection signal="pressed" from="BackButton2" to="." method="_on_back_button_2_pressed"]
