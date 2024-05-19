@@ -1,10 +1,11 @@
 # Godot运行时文件
 .godot/
 /godot/**/*.tmp
+/godot/android
 
 # 打包目录
-/output/*
-!/output/.gitkeep
+/output/*/*
+!/output/**/.gitkeep
 
 # 二进制文件
 *.exe
