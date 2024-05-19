@@ -6,27 +6,61 @@
 script = ExtResource("1_3hkw0")
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 425.0
-offset_top = 327.0
-offset_right = 679.0
-offset_bottom = 379.0
+offset_left = 457.0
+offset_top = 383.0
+offset_right = 711.0
+offset_bottom = 435.0
 text = "开始"
 
 [node name="ExitButton" type="Button" parent="."]
-offset_left = 425.0
-offset_top = 475.0
-offset_right = 679.0
-offset_bottom = 527.0
+offset_left = 457.0
+offset_top = 466.0
+offset_right = 711.0
+offset_bottom = 518.0
 text = "退出"
 
-[node name="SettingsButton" type="Button" parent="."]
-offset_left = 425.0
-offset_top = 402.0
-offset_right = 679.0
-offset_bottom = 454.0
-text = "设置"
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 457.0
+offset_top = 287.0
+offset_right = 711.0
+offset_bottom = 361.0
+columns = 4
+
+[node name="Width" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "宽度："
+
+[node name="WidthEdit" type="TextEdit" parent="GridContainer"]
+custom_minimum_size = Vector2(45, 35)
+layout_mode = 2
+text = "10"
+
+[node name="Height" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "高度："
+
+[node name="HeightEdit" type="TextEdit" parent="GridContainer"]
+custom_minimum_size = Vector2(45, 35)
+layout_mode = 2
+text = "7"
+
+[node name="GameMode" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "难度："
+
+[node name="GameModeEdit" type="TextEdit" parent="GridContainer"]
+custom_minimum_size = Vector2(45, 35)
+layout_mode = 2
+text = "1"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="SettingsButton" to="." method="_on_exit_button_pressed"]
+[connection signal="focus_exited" from="GridContainer/WidthEdit" to="." method="_on_width_edit_focus_exited"]
+[connection signal="text_changed" from="GridContainer/WidthEdit" to="." method="_on_width_edit_text_changed"]
+[connection signal="focus_exited" from="GridContainer/HeightEdit" to="." method="_on_height_edit_focus_exited"]
+[connection signal="text_changed" from="GridContainer/HeightEdit" to="." method="_on_height_edit_text_changed"]
+[connection signal="focus_exited" from="GridContainer/GameModeEdit" to="." method="_on_game_mode_edit_focus_exited"]
+[connection signal="text_changed" from="GridContainer/GameModeEdit" to="." method="_on_game_mode_edit_text_changed"]

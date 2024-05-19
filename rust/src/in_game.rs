@@ -1,3 +1,4 @@
+mod bridge;
 mod game_map;
 mod island;
 

@@ -1,6 +1,5 @@
-use godot::engine::Button;
 use godot::engine::{
-    global::MouseButton, IButton, InputEvent, InputEventMouseButton, InputEventMouseMotion,
+    global::MouseButton, Button, IButton, InputEvent, InputEventMouseButton, InputEventMouseMotion,
 };
 use godot::prelude::*;
 
@@ -20,7 +19,11 @@ pub struct Island {
     pub max_bridge_count: i32,
     /// 当前桥梁数量
     #[init(default = 0)]
+    #[export]
     pub current_bridge_count: i32,
+    #[init(default = Vector4i::new(0, 0, 0, 0))]
+    #[export]
+    pub bridge_state: Vector4i,
     base: Base<Button>,
 }
 
@@ -33,6 +36,7 @@ impl Island {
             is_drag: false,
             max_bridge_count: 0,
             current_bridge_count: 0,
+            bridge_state: Vector4i::new(0, 0, 0, 0),
             base,
         })
     }
@@ -40,6 +44,8 @@ impl Island {
     pub fn finish_preview_bridge(src: Gd<Island>, target_pos: Vector2) {}
     #[signal]
     pub fn preview_bridge(src: Gd<Island>, target_pos: Vector2) {}
+    #[signal]
+    pub fn change_bridge_count(src: Gd<Island>) {}
 }
 
 #[godot_api]
@@ -52,7 +58,7 @@ impl IButton for Island {
             //     self.pos,
             //     event.get_position()
             // );
-            let mut gd = self.to_gd();
+            let mut gd = self.base_mut();
             let param = &[
                 Variant::from_variant(&gd.to_variant()),
                 Variant::from(event.get_position()),
@@ -67,12 +73,12 @@ impl IButton for Island {
         if event.get_button_index() == MouseButton::LEFT {
             if event.is_released() {
                 self.set_is_drag(false);
-                godot_print!(
-                    "鼠标释放事件：岛屿：{:?}， 坐标：{:?}",
-                    self.pos,
-                    event.get_position()
-                );
-                let mut gd = self.to_gd();
+                // godot_print!(
+                //     "鼠标释放事件：岛屿：{:?}， 坐标：{:?}",
+                //     self.pos,
+                //     event.get_position()
+                // );
+                let mut gd = self.base_mut();
                 let param = &[
                     Variant::from_variant(&gd.to_variant()),
                     Variant::from(event.get_position()),
@@ -81,11 +87,11 @@ impl IButton for Island {
                 return;
             }
             if event.is_pressed() {
-                godot_print!(
-                    "鼠标按下事件：岛屿：{:?}， 坐标：{:?}",
-                    self.pos,
-                    event.get_position()
-                );
+                // godot_print!(
+                //     "鼠标按下事件：岛屿：{:?}， 坐标：{:?}",
+                //     self.pos,
+                //     event.get_position()
+                // );
                 self.set_is_drag(true);
                 return;
             }

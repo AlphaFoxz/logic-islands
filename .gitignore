@@ -1,3 +1,10 @@
-# Godot 4+ specific ignores
+# Godot运行时文件
 .godot/
 /godot/**/*.tmp
+
+# 打包目录
+/output/*
+!/output/.gitkeep
+
+# 二进制文件
+*.exe
