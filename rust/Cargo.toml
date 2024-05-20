@@ -5,6 +5,7 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
+# crate-type = ["dylib"]  # Compile this crate to a dynamic C library.
 
 [dependencies]
 godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
@@ -12,13 +13,20 @@ rand = "0.8.5"
 
 [build-dependencies]
 cc = "1.0"
+# [build]
+# target = ["x86_64-pc-windows-msvc", "aarch64-linux-android"]
 
 [profile.release]
 lto = true
+strip = 'none'
 opt-level = 's'
-# opt-level = 2
+panic = 'unwind'
 
-# [target.aarch64-linux-android]
+[target.arrch64-linux-android]
 # ar = "D:/Android/android-ndk-r26-beta1/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar"
 # linker = "D:/Android/android-ndk-r26-beta1/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android24-clang"
-# rustflags = ["-C", "linker-flavor=ld.lld"]
+# rustc-flags = ["-C", "linker-flavor=ld.lld"]
+# rustc-linke-lib = "rust-lld"
+
+[target.x86_64-pc-windows-msvc]
+# linker = "rust-lld"
