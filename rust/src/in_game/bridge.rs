@@ -101,7 +101,6 @@ impl Bridge {
         first_line_name.push_str("_1");
         let mut second_line_name = name.clone();
         second_line_name.push_str("_2");
-        if l2.is_some() {}
         let mut res = Gd::from_init_fn(|base| Bridge {
             first_point: first,
             second_point: second,
